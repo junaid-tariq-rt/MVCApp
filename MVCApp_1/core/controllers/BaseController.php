@@ -12,5 +12,15 @@
  * @author junaid.tariq
  */
 class BaseController implements ControllerInterface{
-    //put your code here
+    
+    public function model($model) {
+//        $modFac = new ModelFactory();
+//        //require_once '../app/models/'.$model.'.php';
+//        return $modFac->constructModel($model);
+    }
+
+    public function view($view, $data = []) {
+        
+        require_once ''.ROOT.DS.'app/views/'. $view . '.php';
+    }
 }

@@ -13,14 +13,9 @@
  */
 class Request {
 
-    //put your code here
-//    protected $controller = 'home';
-//    protected $action = 'index';
-//    protected $params = array();
-
     private $array = ['controller' => 'home', 'action' => 'index',
         'params' => array()];
-    
+
     /**
      * 
      * @param string $name Key 
@@ -46,14 +41,14 @@ class Request {
             $this->array[$name] = $value;
         }
     }
-    
+
     /**
      * constructor
      */
     function __construct() {
         //echo $_SERVER['REQUEST_URI'];
+        
         $this->run($_SERVER['REQUEST_URI']);
-        //echo $this->controller . ' ' . $this->action;
     }
 
     /**
@@ -75,44 +70,40 @@ class Request {
 
             parse_str($str, $output);
 
-            echo $output['controller'];  // value
-            echo $output['action']; // foo bar
+            echo $output['controller'];
+            echo $output['action'];
             foreach ($output['arr'] as $param) {
                 echo $param;
                 $this->params[] = $param;
             }
         } elseif ($_POST) {
             foreach ($_POST as $key => $value) {
-                if($key == 'controller'){
+                if ($key == 'controller') {
                     $this->controller = $value;
-                }elseif($key == 'action'){
-                     $this->action = $value;
-                }else{
+                } elseif ($key == 'action') {
+                    $this->action = $value;
+                } else {
                     $this->params[] = $value;
-                }   
+                }
             }
         } else {
             
             $uri = urldecode(trim($path, '/'));
-            
+
             $path_parts = explode('/', $uri);
-            
+
             array_shift($path_parts);
             array_shift($path_parts);
             array_shift($path_parts);
-            
-            
-            
+
             $this->controller = current($path_parts);
             array_shift($path_parts);
-            
+
             $this->action = current($path_parts);
             array_shift($path_parts);
-            
+
             $this->params = $path_parts;
-            
         }
-        
     }
 
 }

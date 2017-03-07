@@ -13,4 +13,4 @@ define('VIEWS_PATH', ROOT.DS.'app'.DS.'views');
 
 require_once (ROOT.DS.'core'.DS.'init.php');
 
-$request = new Request();
+$app = new App();

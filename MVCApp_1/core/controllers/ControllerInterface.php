@@ -11,5 +11,10 @@
  * @author junaid.tariq
  */
 interface ControllerInterface {
+
     //put your code here
+
+    public function model($model);
+
+    public function view($view, $data);
 }
