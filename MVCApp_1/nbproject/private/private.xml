@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/prac/MVCApp_1/core/Request.php</file>
+            <file>file:/var/www/html/prac/MVCApp_1/app/views/home/index.php</file>
+            <file>file:/var/www/html/prac/MVCApp_1/core/controllers/BaseController.php</file>
+            <file>file:/var/www/html/prac/MVCApp_1/app/views/home/add.php</file>
+            <file>file:/var/www/html/prac/MVCApp_1/core/controllers/ControllerFactory.php</file>
             <file>file:/var/www/html/prac/MVCApp_1/app/controllers/Home.php</file>
         </group>
     </open-files>

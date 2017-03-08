@@ -14,7 +14,8 @@ interface ControllerInterface {
 
     //put your code here
 
-    public function model($model);
-
-    public function view($view, $data);
+    public function run($request);
+    public function render();
+    
+    
 }

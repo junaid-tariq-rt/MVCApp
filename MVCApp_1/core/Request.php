@@ -29,25 +29,13 @@ class Request {
         }
     }
 
-    /**
-     * 
-     * @param string $name Key for array
-     * @param string $value Value to be set against key
-     * 
-     * Sets the attriute value if present in array
-     */
-    public function __set($name, $value) {
-        if (array_key_exists($name, $this->array)) {
-            $this->array[$name] = $value;
-        }
-    }
-
+    
     /**
      * constructor
      */
     function __construct() {
         //echo $_SERVER['REQUEST_URI'];
-        
+
         $this->run($_SERVER['REQUEST_URI']);
     }
 
@@ -87,7 +75,7 @@ class Request {
                 }
             }
         } else {
-            
+
             $uri = urldecode(trim($path, '/'));
 
             $path_parts = explode('/', $uri);
@@ -96,11 +84,17 @@ class Request {
             array_shift($path_parts);
             array_shift($path_parts);
 
-            $this->controller = current($path_parts);
-            array_shift($path_parts);
+            if (current($path_parts)) {
+                $this->controller = current($path_parts);
 
-            $this->action = current($path_parts);
-            array_shift($path_parts);
+                array_shift($path_parts);
+            }
+
+            if (current($path_parts)) {
+                $this->action = current($path_parts);
+
+                array_shift($path_parts);
+            }
 
             $this->params = $path_parts;
         }

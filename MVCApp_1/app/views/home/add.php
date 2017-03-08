@@ -6,14 +6,4 @@
  * and open the template in the editor.
  */
 
-class Home extends BaseController{
-    
-    public function index(){ 
-        
-        $this->render(true);
-    }
-    
-    public function add(){
-        $this->render(true);
-    }
-}
+echo Config::get('baseURL');

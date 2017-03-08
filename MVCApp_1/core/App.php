@@ -15,6 +15,7 @@ class App {
 
     //put your code here
     private $request;
+    
     private $controller;
 
     function __construct() {
@@ -25,13 +26,14 @@ class App {
     public function run() {
         
         $this->request = new Request();
+       
+        $this->controller = ControllerFactory::constructController($this->request->controller);
         
-        $control = new ControllerFactory();
-        //echo $control->home;
-        $this->controller = $control->constructController($this->request->controller);
+        $base = new BaseController();
+        $base->run($this->request);
+    
         
-        
-        call_user_func_array([$this->controller, $this->request->action], $this->request->params);
+        //call_user_func_array([$this->controller, $this->request->action], $this->request->params);
     }
 
 }

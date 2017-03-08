@@ -13,16 +13,13 @@
  */
 class ControllerFactory {
     //put your code here
-    private $array = ['home' => 'Home', 'student' => 'Student',
-        'teacher' => 'Teacher', 'course' => 'Course'];
-    
-    
 
-    public function constructController($name){
-        if (array_key_exists($name, $this->array)) {
-        
-            return new $this->array[$name]();
+    public static function constructController($name){
+        if(Config::get($name)){
+            $obj =  Config::get($name);            
+            return new $obj();
         }
+        return false;
     }
     
 }

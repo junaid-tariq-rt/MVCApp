@@ -13,14 +13,53 @@
  */
 class BaseController implements ControllerInterface{
     
-    public function model($model) {
-//        $modFac = new ModelFactory();
-//        //require_once '../app/models/'.$model.'.php';
-//        return $modFac->constructModel($model);
+    protected $controller = 'home';
+    
+    protected $model;
+    
+    protected static $action = 'index';
+    
+    protected $params;
+    
+    private static $reqCont;
+    
+    
+    
+    function __construct() {
+        
     }
 
-    public function view($view, $data = []) {
-        
-        require_once ''.ROOT.DS.'app/views/'. $view . '.php';
+    
+    public function render($flag = false) {
+        include ROOT.DS.'app/views/generic/default.php';
+        if($flag){
+            
+            include ROOT.DS.'app/views/'.  lcfirst(self::$reqCont) . DS . self::$action. '.php';
+        }
     }
+
+    public function run($request) {
+        self::$reqCont = $request->controller;
+        
+        if(file_exists(ROOT.DS.'app/controllers/'.ucfirst($request->controller).'.php')){
+            
+            $this->controller = new $request->controller();
+            
+        }
+        $controller_method = $request->action;
+        
+        if (method_exists($this->controller, $controller_method)) {
+            self::$action = $request->action;
+        }
+        
+        $this->params = $request->params;
+        
+        $this->callMethod($this->controller, self::$action);
+        
+    }
+
+    function callMethod($cont, $act){
+        $cont->$act();
+    }
+    
 }
