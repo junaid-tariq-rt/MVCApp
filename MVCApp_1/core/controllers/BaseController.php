@@ -19,18 +19,21 @@ class BaseController implements ControllerInterface{
     
     protected static $action = 'index';
     
+    protected  $data;
+
+
     protected $params;
     
     private static $reqCont;
     
     
     
-    function __construct() {
-        
+    function __construct($data = array()) {
+        $this->data = $data;
     }
 
     
-    public function render($flag = false) {
+    public function render($flag = false, $data= []) {
         include ROOT.DS.'app/views/generic/default.php';
         if($flag){
             

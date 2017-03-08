@@ -13,6 +13,7 @@
  */
 interface ModelInterface {
     //put your code here
+    public function listAll($table);
     public function add($table, $data);
     public function edit($table, $data, $conditions);
     public function delete($table, $conditions);

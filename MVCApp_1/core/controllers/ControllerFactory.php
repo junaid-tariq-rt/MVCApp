@@ -19,7 +19,7 @@ class ControllerFactory {
             $obj =  Config::get($name);            
             return new $obj();
         }
-        return false;
+        return null;
     }
     
 }

@@ -16,7 +16,9 @@ class BaseModel implements ModelInterface {
     protected $db;
     
     function __construct() {
-        //$this->db = Database::getInstance();
+        
+        $this->db = Database::getInstance();
+        
     }
 
     
@@ -30,6 +32,12 @@ class BaseModel implements ModelInterface {
 
     public function edit($table, $data, $conditions) {
         
+    }
+
+    public function listAll($table) {
+        $sql = "select * from {$table}";
+        
+        return $this->db->query($sql);
     }
 
 }

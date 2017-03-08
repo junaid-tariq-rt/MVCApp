@@ -13,10 +13,20 @@
  */
 class Student extends BaseController {
 
-//put your code here
+    function __construct($data = array()) {
+        parent::__construct($data);
+    }
 
     function index() {
-        $this->render(false);
+        $mod = 'studentmod';
+        $tbl = 'student';
+
+        $this->model = ModelFactory::constructModel($mod);
+
+
+        $this->data['students'] = $this->model->listAll(Config::get($tbl));
+        
+        $this->render(true, $this->data);
     }
 
 }

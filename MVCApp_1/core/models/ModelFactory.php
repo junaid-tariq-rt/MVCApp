@@ -13,15 +13,11 @@
  */
 class ModelFactory {
     //put your code here
-    private $array = ['student' => 'Student', 'teacher' => 'Teacher',
-         'course' => 'Course'];
-    
-    
-
-    public function constructModel($name){
-        if (array_key_exists($name, $this->array)) {
-        
-            return new $this->array[$name]();
+    public static function constructModel($name){
+        if(Config::get($name)){
+            $obj =  Config::get($name);            
+            return new $obj();
         }
+        return null;
     }
 }
