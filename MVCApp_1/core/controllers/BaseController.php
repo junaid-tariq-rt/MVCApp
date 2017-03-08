@@ -20,14 +20,15 @@ class BaseController implements ControllerInterface {
     protected $params;
     protected $renderFlag = true;
     private static $reqCont;
+    private $view;
 
     function __construct($data = array()) {
         $this->data = $data;
+        $this->view = new ViewManager();
     }
 
     public function render($data = []) {
-        include ROOT . DS . 'app/views/generic/default.php';
-        include ROOT . DS . 'app/views/' . lcfirst(self::$reqCont) . DS . self::$action . '.php';
+        $this->view->render($data,self::$reqCont, self::$action );
     }
 
     public function run($request) {
