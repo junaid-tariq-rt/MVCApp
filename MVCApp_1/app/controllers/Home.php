@@ -8,6 +8,11 @@
 
 class Home extends BaseController{
     
+    function __construct($data = array()) {
+        parent::__construct($data);
+    }
+
+    
     public function index(){ 
         
         $this->render(true);

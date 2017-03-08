@@ -29,11 +29,7 @@ class App {
        
         $this->controller = ControllerFactory::constructController($this->request->controller);
         
-        $base = new BaseController();
-        $base->run($this->request);
-    
-        
-        //call_user_func_array([$this->controller, $this->request->action], $this->request->params);
+        $this->controller->run($this->request);
     }
 
 }

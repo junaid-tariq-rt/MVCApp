@@ -7,16 +7,10 @@
  */
 
 /**
- * Description of Student
+ * Description of ViewManager
  *
  * @author junaid.tariq
  */
-class StudentModel extends BaseModel {
+class ViewManager {
     //put your code here
-    public $table = 'Student';
-    
-    function __construct() {
-        parent::__construct();
-    }
-
 }

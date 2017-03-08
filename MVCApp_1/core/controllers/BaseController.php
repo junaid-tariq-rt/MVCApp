@@ -11,58 +11,48 @@
  *
  * @author junaid.tariq
  */
-class BaseController implements ControllerInterface{
-    
+class BaseController implements ControllerInterface {
+
     protected $controller = 'home';
-    
     protected $model;
-    
     protected static $action = 'index';
-    
-    protected  $data;
-
-
+    protected $data;
     protected $params;
-    
+    protected $renderFlag = true;
     private static $reqCont;
-    
-    
-    
+
     function __construct($data = array()) {
         $this->data = $data;
     }
 
-    
-    public function render($flag = false, $data= []) {
-        include ROOT.DS.'app/views/generic/default.php';
-        if($flag){
-            
-            include ROOT.DS.'app/views/'.  lcfirst(self::$reqCont) . DS . self::$action. '.php';
-        }
+    public function render($data = []) {
+        include ROOT . DS . 'app/views/generic/default.php';
+        include ROOT . DS . 'app/views/' . lcfirst(self::$reqCont) . DS . self::$action . '.php';
     }
 
     public function run($request) {
         self::$reqCont = $request->controller;
-        
-        if(file_exists(ROOT.DS.'app/controllers/'.ucfirst($request->controller).'.php')){
-            
+
+        if (file_exists(ROOT . DS . 'app/controllers/' . ucfirst($request->controller) . '.php')) {
             $this->controller = new $request->controller();
-            
         }
-        $controller_method = $request->action;
         
+        $controller_method = $request->action;
+
         if (method_exists($this->controller, $controller_method)) {
             self::$action = $request->action;
         }
-        
+
         $this->params = $request->params;
-        
+
         $this->callMethod($this->controller, self::$action);
-        
     }
 
-    function callMethod($cont, $act){
+    function callMethod($cont, $act) {
         $cont->$act();
+        if ($this->controller->renderFlag == true) {
+            $this->render($this->controller->data);
+        }
     }
-    
+
 }

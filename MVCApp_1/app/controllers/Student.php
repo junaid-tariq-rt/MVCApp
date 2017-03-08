@@ -19,14 +19,12 @@ class Student extends BaseController {
 
     function index() {
         $mod = 'studentmod';
-        $tbl = 'student';
 
         $this->model = ModelFactory::constructModel($mod);
 
-
-        $this->data['students'] = $this->model->listAll(Config::get($tbl));
+        $this->data['students'] = $this->model->listAll($this->model->table);
         
-        $this->render(true, $this->data);
+        //$this->renderFlag = false;
     }
 
 }
