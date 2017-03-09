@@ -14,6 +14,12 @@
 class ControllerFactory {
     //put your code here
 
+    /**
+     * 
+     * @param String $name key to get value and return by making 
+     * object of that controller
+     * @return \obj
+     */
     public static function constructController($name){
         if(Config::get($name)){
             $obj =  Config::get($name);            

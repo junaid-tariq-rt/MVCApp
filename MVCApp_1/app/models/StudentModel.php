@@ -15,6 +15,9 @@ class StudentModel extends BaseModel {
     //put your code here
     public $table = 'Student';
     
+    /**
+     * Contructor that calls parent constructorS
+     */
     function __construct() {
         parent::__construct();
     }

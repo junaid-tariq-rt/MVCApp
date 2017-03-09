@@ -14,7 +14,6 @@
 class ViewManager {
     //put your code here
     function render($data = [], $reqCont, $action){
-        $this->renderPartial();
         include ROOT . DS . 'app/views/' . lcfirst($reqCont) . DS . $action . '.php';
     }
     

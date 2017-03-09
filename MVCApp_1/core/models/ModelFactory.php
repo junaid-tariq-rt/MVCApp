@@ -13,6 +13,11 @@
  */
 class ModelFactory {
     //put your code here
+    /**
+     * 
+     * @param String $name Model name
+     * @return \obj Corresponding object of that model
+     */
     public static function constructModel($name){
         if(Config::get($name)){
             $obj =  Config::get($name);            

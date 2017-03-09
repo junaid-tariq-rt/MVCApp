@@ -18,11 +18,18 @@ class App {
     
     private $controller;
 
+    /**
+     * Constructor method
+     */
     function __construct() {
         
         $this->run();
     }
 
+    /**
+     * Make new request object and detect parameters and call the respective 
+     * controller and pass request to it.
+     */
     public function run() {
         
         $this->request = new Request();
